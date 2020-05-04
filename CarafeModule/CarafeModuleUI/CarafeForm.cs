@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using CarafeModule;
 
@@ -11,10 +10,28 @@ namespace CarafeModuleUI
     /// </summary>
     public partial class CarafeForm : Form
     {
+        /// <summary>
+        /// Поле, хранящее параметры и их значения.
+        /// </summary>
         private readonly Parameters _parameters = new Parameters();
 
+        /// <summary>
+        /// Поле, хранящее название TextBox и соответствующуе ему тип параметра.
+        /// </summary>
         private Dictionary<TextBox, ParameterType> _fields;
+
+        /// <summary>
+        /// Поле, хранящее тип параметра и соответствующее ему элемент Label.
+        /// </summary>
         private Dictionary<ParameterType, Label> _labels;
+
+        /// <summary>
+        /// Получить значения поля _parameters.
+        /// </summary>
+        public Parameters Parameters
+        {
+            get => _parameters;
+        }
 
         /// <summary>
         /// Задать возможность редактирования полей HandleAngleTextBox и HandleLengthTextBox.
@@ -26,7 +43,7 @@ namespace CarafeModuleUI
                 HandleAngleTextBox.Enabled = value;
                 HandleLengthTextBox.Enabled = value;
 
-                _parameters.StopperState =
+                _parameters.HandleState =
                     value ? ParameterState.Present : ParameterState.Missing;
             }
         }
@@ -40,7 +57,7 @@ namespace CarafeModuleUI
             {
                 StopperHeightTextBox.Enabled = value;
 
-                _parameters.HandleState =
+                _parameters.StopperState =
                     value ? ParameterState.Present : ParameterState.Missing;
             }
         }
@@ -277,14 +294,24 @@ namespace CarafeModuleUI
         }
 
         /// <summary>
-        /// Действие, при нажатии на кнопку Build.
+        /// Действие, срабатываемое при нажатии на кнопку Build.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Something message", "Info!", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        /// <summary>
+        /// Действие, срабатываемое при нажатии на кнопку Cancel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -58,6 +58,7 @@
             this.StopperHeightTextBox = new System.Windows.Forms.TextBox();
             this.BottleStopperLabel = new System.Windows.Forms.Label();
             this.StopperHeightLabel = new System.Windows.Forms.Label();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.Panel.SuspendLayout();
             this.CarafeGroupBox.SuspendLayout();
             this.BuildButtonGroupBox.SuspendLayout();
@@ -75,7 +76,7 @@
             this.Panel.Controls.Add(this.CarafeGroupBox);
             this.Panel.Location = new System.Drawing.Point(0, 0);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(404, 420);
+            this.Panel.Size = new System.Drawing.Size(404, 432);
             this.Panel.TabIndex = 1;
             // 
             // CarafeGroupBox
@@ -88,25 +89,26 @@
             this.CarafeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CarafeGroupBox.Location = new System.Drawing.Point(12, 3);
             this.CarafeGroupBox.Name = "CarafeGroupBox";
-            this.CarafeGroupBox.Size = new System.Drawing.Size(377, 411);
+            this.CarafeGroupBox.Size = new System.Drawing.Size(377, 423);
             this.CarafeGroupBox.TabIndex = 1;
             this.CarafeGroupBox.TabStop = false;
             this.CarafeGroupBox.Text = "Carafe";
             // 
             // BuildButtonGroupBox
             // 
+            this.BuildButtonGroupBox.Controls.Add(this.CancelButton);
             this.BuildButtonGroupBox.Controls.Add(this.BuildButton);
             this.BuildButtonGroupBox.Location = new System.Drawing.Point(6, 352);
             this.BuildButtonGroupBox.Name = "BuildButtonGroupBox";
-            this.BuildButtonGroupBox.Size = new System.Drawing.Size(365, 53);
+            this.BuildButtonGroupBox.Size = new System.Drawing.Size(365, 62);
             this.BuildButtonGroupBox.TabIndex = 1;
             this.BuildButtonGroupBox.TabStop = false;
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(129, 20);
+            this.BuildButton.Location = new System.Drawing.Point(198, 20);
             this.BuildButton.Name = "BuildButton";
-            this.BuildButton.Size = new System.Drawing.Size(102, 26);
+            this.BuildButton.Size = new System.Drawing.Size(114, 32);
             this.BuildButton.TabIndex = 1;
             this.BuildButton.Text = "Build";
             this.BuildButton.UseVisualStyleBackColor = true;
@@ -385,15 +387,25 @@
             this.StopperHeightLabel.TabIndex = 0;
             this.StopperHeightLabel.Text = "Stopper height :";
             // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(29, 20);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(114, 32);
+            this.CancelButton.TabIndex = 2;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // CarafeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 417);
+            this.ClientSize = new System.Drawing.Size(401, 429);
             this.Controls.Add(this.Panel);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(417, 456);
-            this.MinimumSize = new System.Drawing.Size(417, 456);
+            this.MaximumSize = new System.Drawing.Size(417, 468);
+            this.MinimumSize = new System.Drawing.Size(417, 468);
             this.Name = "CarafeForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -443,6 +455,7 @@
         private System.Windows.Forms.Label RangeCarafeHeightLabel;
         private System.Windows.Forms.Label RangeBaseDiameterLabel;
         private System.Windows.Forms.Label RangeStopperHeightLabel;
+        private System.Windows.Forms.Button CancelButton;
     }
 }
 

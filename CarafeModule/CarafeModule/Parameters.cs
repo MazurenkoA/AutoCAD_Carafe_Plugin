@@ -14,6 +14,16 @@ namespace CarafeModule
         private Dictionary<ParameterType, Parameter> _parameters;
 
         /// <summary>
+        /// Поля, хранящее состояние параметра 'Пробка графина' при построение.
+        /// </summary>
+        private ParameterState _stopperState;
+
+        /// <summary>
+        /// Поля, хранящее состояние параметра 'Ручка графина' при построение.
+        /// </summary>
+        private ParameterState _handleState;
+
+        /// <summary>
         /// Метод, который обновляет максимально допустимое значение для длины ручки графина.
         /// </summary>
         private void UpdateMaxHandleLength()
@@ -28,7 +38,7 @@ namespace CarafeModule
         private void UpdateMaxThroatDiameter()
         {
             _parameters[ParameterType.ThroatDiameter].MaxValue =
-                Math.Round((3 * _parameters[ParameterType.BaseDiameter].Value) / 2, 2);
+                _parameters[ParameterType.BaseDiameter].Value;
         }
 
         /// <summary>
@@ -36,8 +46,11 @@ namespace CarafeModule
         /// </summary>
         public Parameters()
         {
+            HandleState = ParameterState.Present;
+            StopperState = ParameterState.Present;
+
             double maxThroatDiameter =
-                Math.Round(((3 * ParametersConstant.MinBaseDiameter) / 2), 2);
+                ParametersConstant.MinBaseDiameter;
 
             double maxHandleLength =
                 Math.Round(((2 * ParametersConstant.MinCarafeHeight) / 3), 2);
@@ -47,45 +60,57 @@ namespace CarafeModule
                 {
                     {
                         ParameterType.BaseDiameter, new Parameter(
-                            ParameterState.Present,
                             ParametersConstant.MinBaseDiameter,
                             ParametersConstant.MaxBaseDiameter,
                             ParametersConstant.MinBaseDiameter)
                     },
                     {
                         ParameterType.CarafeHeight, new Parameter(
-                            ParameterState.Present,
                             ParametersConstant.MinCarafeHeight,
                             ParametersConstant.MaxCarafeHeight,
                             ParametersConstant.MinCarafeHeight)
                     },
                     {
                         ParameterType.ThroatDiameter, new Parameter(
-                            ParameterState.Present,
                             ParametersConstant.MinThroatDiameter, maxThroatDiameter,
                             ParametersConstant.MinThroatDiameter)
                     },
                     {
                         ParameterType.StopperHeight, new Parameter(
-                            ParameterState.Present,
                             ParametersConstant.MinStopperHeight,
                             ParametersConstant.MaxStopperHeight,
                             ParametersConstant.MinStopperHeight)
                     },
                     {
                         ParameterType.HandleAngle, new Parameter(
-                            ParameterState.Present,
                             ParametersConstant.MinHandleAngle,
                             ParametersConstant.MaxHandleAngle,
                             ParametersConstant.MinHandleAngle)
                     },
                     {
                         ParameterType.HandleLength, new Parameter(
-                            ParameterState.Missing,
                             ParametersConstant.MinHandleLength, maxHandleLength,
                             ParametersConstant.MinHandleLength)
                     }
                 };
+        }
+
+        /// <summary>
+        /// Получить / задать наличие параметра 'Пробка графина' при построении.
+        /// </summary>
+        public ParameterState StopperState
+        {
+            get => _stopperState;
+            set => _stopperState = value;
+        }
+
+        /// <summary>
+        /// Получить / задать наличие параметра 'Ручка графина' при построении.
+        /// </summary>
+        public ParameterState HandleState
+        {
+            get => _handleState;
+            set => _handleState = value;
         }
 
         /// <summary>
@@ -147,40 +172,6 @@ namespace CarafeModule
         {
             return !(value > _parameters[parameterType].MaxValue) &&
                    !(value < _parameters[parameterType].MinValue);
-        }
-
-        /// <summary>
-        /// Получить / задать наличие параметра 'Пробка' при построении.
-        /// </summary>
-        public ParameterState StopperState
-        {
-            get => _parameters[ParameterType.StopperHeight].State;
-            set => _parameters[ParameterType.StopperHeight].State =
-                value;
-        }
-
-        /// <summary>
-        /// Получить / задать наличие параметра 'Ручка графина' при построении.
-        /// </summary>
-        public ParameterState HandleState
-        {
-            get
-            {
-                if (_parameters[ParameterType.HandleAngle].State ==
-                    ParameterState.Present &&
-                    _parameters[ParameterType.HandleLength].State ==
-                    ParameterState.Present)
-                {
-                    return ParameterState.Present;
-                }
-
-                return ParameterState.Missing;
-            }
-            set
-            {
-                _parameters[ParameterType.HandleLength].State = value;
-                _parameters[ParameterType.HandleAngle].State = value;
-            }
         }
     }
 }

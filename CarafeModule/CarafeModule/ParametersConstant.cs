@@ -18,7 +18,13 @@
 
         public const double MinHandleLength = 25;
 
-        public const double MinHandleAngle = 45;
-        public const double MaxHandleAngle = 135;
+        public const double MinHandleAngle = 0;
+        public const double MaxHandleAngle = 90;
+
+        public const double ThroatHeight = 10;
+
+        public const double ThicknessObject = 0.5;
+
+        public const double ArcLength = 5;
     }
 }

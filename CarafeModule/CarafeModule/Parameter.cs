@@ -44,22 +44,15 @@
         }
 
         /// <summary>
-        /// Получить / задать, будет ли параметр учитываться при построении..
-        /// </summary>
-        public ParameterState State { get; set; }
-
-        /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="state">Наличие параметра при построении.</param>
         /// <param name="minValue">Минимально допустимное значение параметра.</param>
         /// <param name="maxValue">Максимально допустимное значение параметра.</param>
         /// <param name="value">Текущее значение параметра.</param>
-        public Parameter(ParameterState state, double minValue,
+        public Parameter(double minValue,
             double maxValue,
             double value)
         {
-            State = state;
             MinValue = minValue;
             MaxValue = maxValue;
             Value = value;
