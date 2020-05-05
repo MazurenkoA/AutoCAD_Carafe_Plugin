@@ -1,4 +1,6 @@
-﻿namespace CarafeModule
+﻿using System;
+
+namespace CarafeModule
 {
     /// <summary>
     /// Класс, хранящий информацию о параметрах графина.
@@ -11,14 +13,23 @@
         private double _value;
 
         /// <summary>
-        /// Получить / задать максимально допустимое значение параметра.
+        /// Максимально допустимое значение параметра.
         /// </summary>
-        public double MaxValue { get; set; }
+        private double _maxValue = 0;
 
         /// <summary>
-        /// Получить / задать минимально допустимое значение параметра.
+        /// Получить / задать максимально допустимое значение параметра.
         /// </summary>
-        public double MinValue { get; private set; }
+        public double MaxValue
+        {
+            get => _maxValue;
+            set => _maxValue = value < MinValue ? MinValue : value;
+        }
+
+        /// <summary>
+        /// Получить минимально допустимое значение параметра.
+        /// </summary>
+        public double MinValue { get; private set; } = 0;
 
         /// <summary>
         /// Получить / задать текущее значение параметра.
@@ -53,9 +64,30 @@
             double maxValue,
             double value)
         {
-            MinValue = minValue;
-            MaxValue = maxValue;
+            if (minValue > maxValue)
+            {
+                MinValue = maxValue;
+                MaxValue = minValue;
+            }
+            else
+            {
+                MinValue = minValue;
+                MaxValue = maxValue;
+            }
+
             Value = value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            Parameter parameter = (Parameter) obj;
+            return (this.MinValue == parameter.MinValue &&
+                    this.MaxValue == parameter.MaxValue && this.Value == parameter.Value);
         }
     }
 }

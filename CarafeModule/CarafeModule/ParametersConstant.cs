@@ -6,7 +6,7 @@
     public static class ParametersConstant
     {
         public const double MinCarafeHeight = 100;
-        public const double MaxCarafeHeight = 500;
+        public const double MaxCarafeHeight = 300;
 
         public const double MinThroatDiameter = 25;
 

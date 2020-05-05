@@ -117,7 +117,7 @@ namespace CarafeModule
         /// Получить минимально допустимое значение параметра.
         /// </summary>
         /// <param name="parameterType">Тип параметра.</param>
-        /// <returns>Минимально допустимоезначение параметра.</returns>
+        /// <returns>Минимально допустимое значение параметра.</returns>
         public double GetMinValue(ParameterType parameterType)
         {
             return _parameters[parameterType].MinValue;
@@ -127,7 +127,7 @@ namespace CarafeModule
         /// Получить максимально допустимое значение параметра.
         /// </summary>
         /// <param name="parameterType">Тип параметра</param>
-        /// <returns>Максимально допустимое параметра.</returns>
+        /// <returns>Максимально допустимое значение параметра.</returns>
         public double GetMaxValue(ParameterType parameterType)
         {
             return _parameters[parameterType].MaxValue;
@@ -150,7 +150,15 @@ namespace CarafeModule
         /// <param name="newValue">Новое значение параметра.</param>
         public void SetValue(ParameterType parameterType, double newValue)
         {
-            _parameters[parameterType].Value = newValue;
+            if (newValue >= _parameters[parameterType].MinValue &&
+                newValue <= _parameters[parameterType].MaxValue)
+            {
+                _parameters[parameterType].Value = newValue;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Значение : "+ newValue+ " не входит в диапазон допустимых значений для параметра "+ parameterType);
+            }
             if (parameterType == ParameterType.BaseDiameter)
             {
                 UpdateMaxThroatDiameter();
