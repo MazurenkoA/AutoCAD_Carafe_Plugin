@@ -13,7 +13,7 @@ namespace CarafeModuleUI
         /// <summary>
         /// Поле, хранящее параметры и их значения.
         /// </summary>
-        private readonly Parameters _parameters = new Parameters();
+        private readonly Parameters _parameters;
 
         /// <summary>
         /// Поле, хранящее название TextBox и соответствующуе ему тип параметра.
@@ -81,7 +81,7 @@ namespace CarafeModuleUI
         /// <summary>
         /// Заполнение полей TextBox соответствующими значениями.
         /// </summary>
-        private void FillFields()
+        private void UpdateValueFields()
         {
             foreach (var keyValues in _fields)
             {
@@ -120,7 +120,7 @@ namespace CarafeModuleUI
         /// <summary>
         /// Заполнение label информацией о допустимом диапазоне чисел.
         /// </summary>
-        private void FillLabels()
+        private void UpdateValueLabels()
         {
             foreach (var keyValues in _labels)
             {
@@ -151,14 +151,16 @@ namespace CarafeModuleUI
         {
             InitializeComponent();
 
+            _parameters = new Parameters();
+
             BottleStopperComboBox.DataSource = Enum.GetValues(typeof(ParameterState));
             HandleComboBox.DataSource = Enum.GetValues(typeof(ParameterState));
 
             InitializeFields();
             InitializeLabels();
 
-            FillFields();
-            FillLabels();
+            UpdateValueFields();
+            UpdateValueLabels();
         }
 
         /// <summary>
@@ -206,13 +208,22 @@ namespace CarafeModuleUI
                         return;
                     }
 
-                    if (_parameters.IsCorrectValue(_fields[textBox], resultValue))
+                    if (!_parameters.IsCorrectValue(_fields[textBox], resultValue))
                     {
-                        _parameters.SetValue(_fields[textBox], resultValue);
+                        SetValueInTextBox(textBox);
+                        return;
                     }
 
+                    _parameters.SetValue(_fields[textBox], resultValue);
                     SetValueInTextBox(textBox);
-                    FillLabels();
+
+                    if (_fields[textBox] == ParameterType.BaseDiameter ||
+                        _fields[textBox] == ParameterType.CarafeHeight)
+                    {
+                        UpdateValueFields();
+                    }
+
+                    UpdateValueLabels();
                 }
             }
             catch (ArgumentException ex)
@@ -221,7 +232,6 @@ namespace CarafeModuleUI
                     MessageBoxIcon.Error);
             }
         }
-
 
         /// <summary>
         /// Событие, которое обрабатывает нажатие клавиши в поле TextBox.

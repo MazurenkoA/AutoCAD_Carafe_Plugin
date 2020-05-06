@@ -33,7 +33,7 @@ namespace CarafeModule
         }
 
         /// <summary>
-        /// Метод, который обновляет максимально допустимое значение для диаметра горла гарфина.
+        /// Метод, который обновляет максимально допустимое значение для диаметра горла графина.
         /// </summary>
         private void UpdateMaxThroatDiameter()
         {
@@ -41,6 +41,27 @@ namespace CarafeModule
                 _parameters[ParameterType.BaseDiameter].Value;
         }
 
+        /// <summary>
+        /// Метод корректирует текущее значение в допустимом диапазоне параметра.
+        /// </summary>
+        /// <param name="parameterType">Параметр.</param>
+        private void AdjustmentValueParameter(ParameterType parameterType)
+        {
+         
+            if (_parameters[parameterType].MaxValue <
+                _parameters[parameterType].Value)
+            {
+                _parameters[parameterType].Value =
+                    _parameters[parameterType].MaxValue;
+            }
+            else if (_parameters[parameterType].Value <
+                     _parameters[parameterType].MinValue)
+            {
+                _parameters[parameterType].Value =
+                    _parameters[parameterType].MinValue;
+            }
+        }
+       
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -157,16 +178,22 @@ namespace CarafeModule
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Значение : "+ newValue+ " не входит в диапазон допустимых значений для параметра "+ parameterType);
+                throw new ArgumentOutOfRangeException(
+                    "Значение : " + newValue +
+                    " не входит в диапазон допустимых значений для параметра " +
+                    parameterType);
             }
+
             if (parameterType == ParameterType.BaseDiameter)
             {
                 UpdateMaxThroatDiameter();
+                AdjustmentValueParameter(ParameterType.ThroatDiameter);
             }
 
             if (parameterType == ParameterType.CarafeHeight)
             {
                 UpdateMaxHandleLength();
+                AdjustmentValueParameter(ParameterType.HandleLength);
             }
         }
 
