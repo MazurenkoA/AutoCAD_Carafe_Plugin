@@ -9,6 +9,56 @@ namespace CarafeModule
     public class Parameters
     {
         /// <summary>
+        /// Минимальное значение высоты графина.
+        /// </summary>
+        public const double MinCarafeHeight = 100;
+
+        /// <summary>
+        /// Максимальное значение высоты графина.
+        /// </summary>
+        public const double MaxCarafeHeight = 300;
+
+        /// <summary>
+        /// Минимальное значение диаметра горла графина.
+        /// </summary>
+        public const double MinThroatDiameter = 25;
+
+        /// <summary>
+        /// Минимальное значение диаметра основания графина.
+        /// </summary>
+        public const double MinBaseDiameter = 50;
+
+        /// <summary>
+        /// Максимальное значение диаметра основания графина.
+        /// </summary>
+        public const double MaxBaseDiameter = 100;
+
+        /// <summary>
+        /// Минимальное значение высоты крышки графина.
+        /// </summary>
+        public const double MinStopperHeight = 10;
+
+        /// <summary>
+        /// Максимальное значение высоты крышки графина.
+        /// </summary>
+        public const double MaxStopperHeight = 50;
+
+        /// <summary>
+        /// Минимальное значение длины ручки графина.
+        /// </summary>
+        public const double MinHandleLength = 25;
+
+        /// <summary>
+        /// Минимальное значение угла ручки графина.
+        /// </summary>
+        public const double MinHandleAngle = 0;
+
+        /// <summary>
+        /// Максимальное значение угла ручки графина.
+        /// </summary>
+        public const double MaxHandleAngle = 90;
+
+        /// <summary>
         /// Словарь, хранящий тип параметра и его характеристики.
         /// </summary>
         private Dictionary<ParameterType, Parameter> _parameters;
@@ -22,7 +72,7 @@ namespace CarafeModule
         /// Поля, хранящее состояние параметра 'Ручка графина' при построение.
         /// </summary>
         private ParameterState _handleState;
-
+        
         /// <summary>
         /// Метод, который обновляет максимально допустимое значение для длины ручки графина.
         /// </summary>
@@ -71,47 +121,47 @@ namespace CarafeModule
             StopperState = ParameterState.Present;
 
             double maxThroatDiameter =
-                ParametersConstant.MinBaseDiameter;
+                MinBaseDiameter;
 
             double maxHandleLength =
-                Math.Round(((2 * ParametersConstant.MinCarafeHeight) / 3), 2);
+                Math.Round((double) ((2 * MinCarafeHeight) / 3), 2);
 
             _parameters =
                 new Dictionary<ParameterType, Parameter>
                 {
                     {
                         ParameterType.BaseDiameter, new Parameter(
-                            ParametersConstant.MinBaseDiameter,
-                            ParametersConstant.MaxBaseDiameter,
-                            ParametersConstant.MinBaseDiameter)
+                            MinBaseDiameter,
+                            MaxBaseDiameter,
+                            MinBaseDiameter)
                     },
                     {
                         ParameterType.CarafeHeight, new Parameter(
-                            ParametersConstant.MinCarafeHeight,
-                            ParametersConstant.MaxCarafeHeight,
-                            ParametersConstant.MinCarafeHeight)
+                            MinCarafeHeight,
+                            MaxCarafeHeight,
+                            MinCarafeHeight)
                     },
                     {
                         ParameterType.ThroatDiameter, new Parameter(
-                            ParametersConstant.MinThroatDiameter, maxThroatDiameter,
-                            ParametersConstant.MinThroatDiameter)
+                            MinThroatDiameter, maxThroatDiameter,
+                            MinThroatDiameter)
                     },
                     {
                         ParameterType.StopperHeight, new Parameter(
-                            ParametersConstant.MinStopperHeight,
-                            ParametersConstant.MaxStopperHeight,
-                            ParametersConstant.MinStopperHeight)
+                            MinStopperHeight,
+                            MaxStopperHeight,
+                            MinStopperHeight)
                     },
                     {
                         ParameterType.HandleAngle, new Parameter(
-                            ParametersConstant.MinHandleAngle,
-                            ParametersConstant.MaxHandleAngle,
-                            ParametersConstant.MinHandleAngle)
+                            MinHandleAngle,
+                            MaxHandleAngle,
+                            MinHandleAngle)
                     },
                     {
                         ParameterType.HandleLength, new Parameter(
-                            ParametersConstant.MinHandleLength, maxHandleLength,
-                            ParametersConstant.MinHandleLength)
+                            MinHandleLength, maxHandleLength,
+                            MinHandleLength)
                     }
                 };
         }

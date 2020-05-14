@@ -81,27 +81,27 @@ namespace CarafeModule.UnitTests
             Assert.AreEqual(expectedState, actualState, message);
         }
 
-        [TestCase(ParameterType.BaseDiameter, ParametersConstant.MinBaseDiameter,
+        [TestCase(ParameterType.BaseDiameter, Parameters.MinBaseDiameter,
             "Метод возвращает некорректное минимальное значение параметра BaseDiameter.",
             TestName =
                 "Тест метода GetMinValue: Получить минимальное значение параметра 'BaseDiameter'.")]
-        [TestCase(ParameterType.ThroatDiameter, ParametersConstant.MinThroatDiameter,
+        [TestCase(ParameterType.ThroatDiameter, Parameters.MinThroatDiameter,
             "Метод возвращает некорректное минимальное значение параметра ThroatDiameter.",
             TestName =
                 "Тест метода GetMinValue: Получить минимальное значение параметра 'ThroatDiameter'.")]
-        [TestCase(ParameterType.CarafeHeight, ParametersConstant.MinCarafeHeight,
+        [TestCase(ParameterType.CarafeHeight, Parameters.MinCarafeHeight,
             "Метод возвращает некорректное минимальное значение параметра CarafeHeight.",
             TestName =
                 "Тест метода GetMinValue: Получить минимальное значение параметра 'CarafeHeight'.")]
-        [TestCase(ParameterType.HandleLength, ParametersConstant.MinHandleLength,
+        [TestCase(ParameterType.HandleLength, Parameters.MinHandleLength,
             "Метод возвращает некорректное минимальное значение параметра HandleLength.",
             TestName =
                 "Тест метода GetMinValue: Получить минимальное значение параметра 'HandleLength'.")]
-        [TestCase(ParameterType.StopperHeight, ParametersConstant.MinStopperHeight,
+        [TestCase(ParameterType.StopperHeight, Parameters.MinStopperHeight,
             "Метод возвращает некорректное минимальное значение параметра StopperHeight.",
             TestName =
                 "Тест метода GetMinValue: Получить минимальное значение параметра 'StopperHeight'.")]
-        [TestCase(ParameterType.HandleAngle, ParametersConstant.MinHandleAngle,
+        [TestCase(ParameterType.HandleAngle, Parameters.MinHandleAngle,
             "Метод возвращает некорректное минимальное значение параметра HandleAngle.",
             TestName =
                 "Тест метода GetMinValue: Получить минимальное значение параметра 'HandleAngle'.")]
@@ -112,19 +112,19 @@ namespace CarafeModule.UnitTests
             Assert.AreEqual(expectedValue, actualValue, message);
         }
 
-        [TestCase(ParameterType.BaseDiameter, ParametersConstant.MaxBaseDiameter,
+        [TestCase(ParameterType.BaseDiameter, Parameters.MaxBaseDiameter,
             "Метод возвращает некорректное максимальное значение параметра BaseDiameter.",
             TestName =
                 "Тест метода GetMinValue: Получить максимальное значение параметра 'BaseDiameter'.")]
-        [TestCase(ParameterType.CarafeHeight, ParametersConstant.MaxCarafeHeight,
+        [TestCase(ParameterType.CarafeHeight, Parameters.MaxCarafeHeight,
             "Метод возвращает некорректное максимальное значение параметра CarafeHeight.",
             TestName =
                 "Тест метода GetMinValue: Получить максимальное значение параметра 'CarafeHeight'.")]
-        [TestCase(ParameterType.StopperHeight, ParametersConstant.MaxStopperHeight,
+        [TestCase(ParameterType.StopperHeight, Parameters.MaxStopperHeight,
             "Метод возвращает некорректное максимальное значение параметра StopperHeight.",
             TestName =
                 "Тест метода GetMinValue: Получить максимальное значение параметра 'StopperHeight'.")]
-        [TestCase(ParameterType.HandleAngle, ParametersConstant.MaxHandleAngle,
+        [TestCase(ParameterType.HandleAngle, Parameters.MaxHandleAngle,
             "Метод возвращает некорректное максимальное значение параметра HandleAngle.",
             TestName =
                 "Тест метода GetMinValue: Получить максимальное значение параметра 'HandleAngle'.")]
@@ -135,27 +135,27 @@ namespace CarafeModule.UnitTests
             Assert.AreEqual(expectedValue, actualValue, message);
         }
 
-        [TestCase(ParameterType.BaseDiameter, ParametersConstant.MinBaseDiameter,
+        [TestCase(ParameterType.BaseDiameter, Parameters.MinBaseDiameter,
             "Метод возвращает некорректное текущее значение параметра BaseDiameter.",
             TestName =
                 "Тест метода GetValue: Получить текущее значение параметра 'BaseDiameter'.")]
-        [TestCase(ParameterType.ThroatDiameter, ParametersConstant.MinThroatDiameter,
+        [TestCase(ParameterType.ThroatDiameter, Parameters.MinThroatDiameter,
             "Метод возвращает некорректное текущее значение параметра ThroatDiameter.",
             TestName =
                 "Тест метода GetValue: Получить текущее значение параметра 'ThroatDiameter'.")]
-        [TestCase(ParameterType.CarafeHeight, ParametersConstant.MinCarafeHeight,
+        [TestCase(ParameterType.CarafeHeight, Parameters.MinCarafeHeight,
             "Метод возвращает некорректное текущее значение параметра CarafeHeight.",
             TestName =
                 "Тест метода GetValue: Получить текущее значение параметра 'CarafeHeight'.")]
-        [TestCase(ParameterType.HandleAngle, ParametersConstant.MinHandleAngle,
+        [TestCase(ParameterType.HandleAngle, Parameters.MinHandleAngle,
             "Метод возвращает некорректное текущее значение параметра HandleAngle.",
             TestName =
                 "Тест метода GetValue: Получить текущее значение параметра 'HandleAngle'.")]
-        [TestCase(ParameterType.HandleLength, ParametersConstant.MinHandleLength,
+        [TestCase(ParameterType.HandleLength, Parameters.MinHandleLength,
             "Метод возвращает некорректное текущее значение параметра HandleLength.",
             TestName =
                 "Тест метода GetValue: Получить текущее значение параметра 'HandleLength'.")]
-        [TestCase(ParameterType.StopperHeight, ParametersConstant.MinStopperHeight,
+        [TestCase(ParameterType.StopperHeight, Parameters.MinStopperHeight,
             "Метод возвращает некорректное текущее значение параметра StopperHeight.",
             TestName =
                 "Тест метода GetValue: Получить текущее значение параметра 'StopperHeight'.")]

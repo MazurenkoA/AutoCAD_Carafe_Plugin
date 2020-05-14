@@ -13,6 +13,21 @@ namespace CarafeModuleApi
     class ModelBuilder
     {
         /// <summary>
+        /// Высота горла графина.
+        /// </summary>
+        private const double _throatHeight = 10;
+
+        /// <summary>
+        /// Толщина графина.
+        /// </summary>
+        private const double _thicknessObject = 0.5;
+
+        /// <summary>
+        /// Длина угол наклона ручки графина.
+        /// </summary>
+        private const double _arcLength = 5;
+
+        /// <summary>
         /// Параметры графина.
         /// </summary>
         private readonly Parameters _parameters;
@@ -96,7 +111,7 @@ namespace CarafeModuleApi
             _stopperHeight = _parameters.GetValue(ParameterType.StopperHeight);
 
             _heightToThroat = _carafeHeight - Math.Round(_carafeHeight / 10, 2);
-            _heightAboveThroat = _heightToThroat + ParametersConstant.ThroatHeight;
+            _heightAboveThroat = _heightToThroat + _throatHeight;
             _stopperHeight += _carafeHeight;
         }
 
@@ -153,12 +168,12 @@ namespace CarafeModuleApi
                         new Point2d(_throatRadius, _heightAboveThroat), 0, 0, 0);
 
                     acPoly.AddVertexAt(index++,
-                        new Point2d(_throatRadius - ParametersConstant.ThicknessObject,
+                        new Point2d(_throatRadius - _thicknessObject,
                             _heightAboveThroat),
                         0, 0, 0);
 
                     acPoly.AddVertexAt(index++,
-                        new Point2d(_throatRadius - ParametersConstant.ThicknessObject,
+                        new Point2d(_throatRadius - _thicknessObject,
                             _heightToThroat), 0, 0,
                         0);
                 }
@@ -169,22 +184,22 @@ namespace CarafeModuleApi
                         0, 0, 0);
 
                     acPoly.AddVertexAt(index++,
-                        new Point2d(_baseRadius - ParametersConstant.ThicknessObject,
+                        new Point2d(_baseRadius - _thicknessObject,
                             _heightAboveThroat),
                         0, 0, 0);
                 }
 
                 acPoly.AddVertexAt(index++,
-                    new Point2d(_baseRadius - ParametersConstant.ThicknessObject,
+                    new Point2d(_baseRadius - _thicknessObject,
                         _minHeightFigure), 0,
                     0, 0);
 
                 acPoly.AddVertexAt(index++,
-                    new Point2d(_baseRadius - ParametersConstant.ThicknessObject,
-                        ParametersConstant.ThicknessObject), 0, 0, 0);
+                    new Point2d(_baseRadius - _thicknessObject,
+                        _thicknessObject), 0, 0, 0);
 
                 acPoly.AddVertexAt(index++,
-                    new Point2d(0, ParametersConstant.ThicknessObject), 0, 0, 0);
+                    new Point2d(0, _thicknessObject), 0, 0, 0);
 
                 blockTableRecord.AppendEntity(acPoly);
 
@@ -224,12 +239,12 @@ namespace CarafeModuleApi
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(_throatRadius,
-                        _heightAboveThroat + ParametersConstant.ThicknessObject), 0, 0,
+                        _heightAboveThroat + _thicknessObject), 0, 0,
                     0);
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(innerRadius,
-                        _heightAboveThroat + ParametersConstant.ThicknessObject), 0, 0,
+                        _heightAboveThroat + _thicknessObject), 0, 0,
                     0);
 
                 acPoly.AddVertexAt(index++,
@@ -269,7 +284,7 @@ namespace CarafeModuleApi
 
                 if (handleAngle != 0.0)
                 {
-                    handleLength -= ParametersConstant.ArcLength * Math.Sin(arcValue);
+                    handleLength -= _arcLength * Math.Sin(arcValue);
                 }
 
                 Polyline acPoly = new Polyline();
@@ -283,45 +298,45 @@ namespace CarafeModuleApi
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(
-                        handleWidth + ParametersConstant.ArcLength * Math.Cos(arcValue),
+                        handleWidth + _arcLength * Math.Cos(arcValue),
                         _heightToThroat -
-                        ParametersConstant.ArcLength * Math.Sin(arcValue)),
+                        _arcLength * Math.Sin(arcValue)),
                     0, 0, 0);
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(
-                        handleWidth + ParametersConstant.ArcLength * Math.Cos(arcValue),
+                        handleWidth + _arcLength * Math.Cos(arcValue),
                         _heightToThroat -
-                        ParametersConstant.ArcLength * Math.Sin(arcValue) - handleLength),
+                        _arcLength * Math.Sin(arcValue) - handleLength),
                     0, 0, 0);
 
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(
-                        handleWidth + ParametersConstant.ArcLength * Math.Cos(arcValue) +
-                        ParametersConstant.ThicknessObject,
+                        handleWidth + _arcLength * Math.Cos(arcValue) +
+                        _thicknessObject,
                         _heightToThroat -
-                        ParametersConstant.ArcLength * Math.Sin(arcValue) - handleLength),
+                        _arcLength * Math.Sin(arcValue) - handleLength),
                     0, 0, 0);
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(
-                        handleWidth + ParametersConstant.ArcLength * Math.Cos(arcValue) +
-                        ParametersConstant.ThicknessObject,
+                        handleWidth + _arcLength * Math.Cos(arcValue) +
+                        _thicknessObject,
                         _heightToThroat -
-                        ParametersConstant.ArcLength * Math.Sin(arcValue) +
-                        ParametersConstant.ThicknessObject),
+                        _arcLength * Math.Sin(arcValue) +
+                        _thicknessObject),
                     0, 0, 0);
 
 
                 acPoly.AddVertexAt(index++,
-                    new Point2d(handleWidth + ParametersConstant.ThicknessObject,
-                        _heightToThroat + ParametersConstant.ThicknessObject),
+                    new Point2d(handleWidth + _thicknessObject,
+                        _heightToThroat + _thicknessObject),
                     0, 0, 0);
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(_throatRadius,
-                        _heightToThroat + ParametersConstant.ThicknessObject), 0, 0, 0);
+                        _heightToThroat + _thicknessObject), 0, 0, 0);
 
                 acPoly.AddVertexAt(index++, new Point2d(_throatRadius, _heightToThroat),
                     0, 0, 0);
