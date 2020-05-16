@@ -178,7 +178,7 @@ namespace CarafeModule.UnitTests
             "Метод задает некорректное значение параметра 'ThroatDiameter'.",
             TestName =
                 "Позитивный тест метода SetValue: Задать значение для параметра 'ThroatDiameter'.")]
-        [TestCase(ParameterType.StopperHeight, 35,
+        [TestCase(ParameterType.StopperHeight, 20,
             "Метод задает некорректное значение параметра 'StopperHeight'.",
             TestName =
                 "Позитивный тест метода SetValue: Задать значение для параметра 'StopperHeight'.")]
@@ -267,7 +267,7 @@ namespace CarafeModule.UnitTests
             "Значение не входит в допустимый диапазон значений для параметра 'ThroatDiameter'.",
             TestName =
                 "Тест метода IsCorrectValue: Ввод допустимного значения для параметра 'ThroatDiameter'.")]
-        [TestCase(ParameterType.StopperHeight, 35,
+        [TestCase(ParameterType.StopperHeight, 20,
             "Значение не входит в допустимый диапазон значений для параметра 'StopperHeight'.",
             TestName =
                 "Тест метода IsCorrectValue: Ввод допустимного значения для параметра 'StopperHeight'.")]
