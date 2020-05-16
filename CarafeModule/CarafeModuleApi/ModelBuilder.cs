@@ -58,7 +58,7 @@ namespace CarafeModuleApi
         private double _throatRadius;
 
         /// <summary>
-        /// Поле, хранящее значение высоты крышки графина.
+        /// Поле, хранящее значение высоты пробки графина.
         /// </summary>
         private double _stopperHeight;
 
@@ -139,7 +139,7 @@ namespace CarafeModuleApi
 
 
         /// <summary>
-        /// Метод, который рисует базовую часть графина (без крышки и ручки).
+        /// Метод, который рисует базовую часть графина (без пробки и ручки).
         /// </summary>
         private void DrawBase()
         {
@@ -147,7 +147,7 @@ namespace CarafeModuleApi
                 _database.TransactionManager.StartTransaction())
             {
                 var blockTableRecord = GetBlockTableRecord(transaction);
-                var _minHeightFigure = Math.Round((_carafeHeight / 1.5), 2);
+                var minHeightFigure = Math.Round((_carafeHeight / 1.5), 2);
 
                 Polyline acPoly = new Polyline();
                 acPoly.SetDatabaseDefaults();
@@ -155,7 +155,7 @@ namespace CarafeModuleApi
 
                 acPoly.AddVertexAt(index++, new Point2d(0, 0), 0, 0, 0);
                 acPoly.AddVertexAt(index++, new Point2d(_baseRadius, 0), 0, 0, 0);
-                acPoly.AddVertexAt(index++, new Point2d(_baseRadius, _minHeightFigure), 0,
+                acPoly.AddVertexAt(index++, new Point2d(_baseRadius, minHeightFigure), 0,
                     0, 0);
 
                 if (_baseRadius != _throatRadius)
@@ -191,7 +191,7 @@ namespace CarafeModuleApi
 
                 acPoly.AddVertexAt(index++,
                     new Point2d(_baseRadius - _thicknessObject,
-                        _minHeightFigure), 0,
+                        minHeightFigure), 0,
                     0, 0);
 
                 acPoly.AddVertexAt(index++,
@@ -210,7 +210,7 @@ namespace CarafeModuleApi
         }
 
         /// <summary>
-        /// Метод, который рисует крышку графина.
+        /// Метод, который рисует пробку графина.
         /// </summary>
         private void DrawStopper()
         {
@@ -279,7 +279,7 @@ namespace CarafeModuleApi
                 double handleAngle = _parameters.GetValue(ParameterType.HandleAngle);
                 double handleLength = _parameters.GetValue(ParameterType.HandleLength);
 
-                double handleWidth = _baseRadius;
+                double handleWidth = _baseRadius+10;
                 double arcValue = (handleAngle * Math.PI) / 180;
 
                 if (handleAngle != 0.0)

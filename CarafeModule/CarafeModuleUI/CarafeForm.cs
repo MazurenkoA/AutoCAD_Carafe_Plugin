@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using CarafeModule;
+using CarafeModule.Drawer;
 
 namespace CarafeModuleUI
 {
@@ -14,6 +15,11 @@ namespace CarafeModuleUI
         /// Поле, хранящее параметры и их значения.
         /// </summary>
         private readonly Parameters _parameters;
+
+        /// <summary>
+        /// Поле, отвечающее за отрисовку графина.
+        /// </summary>
+        private readonly CarafeDrawer _carafeDrawer;
 
         /// <summary>
         /// Поле, хранящее название TextBox и соответствующуе ему тип параметра.
@@ -43,8 +49,12 @@ namespace CarafeModuleUI
                 HandleAngleTextBox.Enabled = value;
                 HandleLengthTextBox.Enabled = value;
 
-                _parameters.HandleState =
-                    value ? ParameterState.Present : ParameterState.Missing;
+                var state = value ? ParameterState.Present : ParameterState.Missing;
+
+                _parameters.HandleState = state;
+
+                _carafeDrawer.SetHandleState(state);
+                _carafeDrawer.Draw();
             }
         }
 
@@ -57,8 +67,12 @@ namespace CarafeModuleUI
             {
                 StopperHeightTextBox.Enabled = value;
 
-                _parameters.StopperState =
-                    value ? ParameterState.Present : ParameterState.Missing;
+                var state = value ? ParameterState.Present : ParameterState.Missing;
+
+                _parameters.StopperState = state;
+
+                _carafeDrawer.SetStopperState(state);
+                _carafeDrawer.Draw();
             }
         }
 
@@ -142,7 +156,10 @@ namespace CarafeModuleUI
         {
             textBox.Text =
                 Convert.ToString(_parameters.GetValue(_fields[textBox]));
+
+            _carafeDrawer.Draw();
         }
+
 
         /// <summary>
         /// Конструктор класса.
@@ -152,6 +169,7 @@ namespace CarafeModuleUI
             InitializeComponent();
 
             _parameters = new Parameters();
+            _carafeDrawer = new CarafeDrawer(_parameters, CarafePictureBox);
 
             BottleStopperComboBox.DataSource = Enum.GetValues(typeof(ParameterState));
             HandleComboBox.DataSource = Enum.GetValues(typeof(ParameterState));
@@ -215,6 +233,9 @@ namespace CarafeModuleUI
                     }
 
                     _parameters.SetValue(_fields[textBox], resultValue);
+
+                    _carafeDrawer.SetValue(_fields[textBox], resultValue);
+
                     SetValueInTextBox(textBox);
 
                     if (_fields[textBox] == ParameterType.BaseDiameter ||

@@ -34,14 +34,14 @@ namespace CarafeModule
         public const double MaxBaseDiameter = 100;
 
         /// <summary>
-        /// Минимальное значение высоты крышки графина.
+        /// Минимальное значение высоты пробки графина.
         /// </summary>
         public const double MinStopperHeight = 10;
 
         /// <summary>
-        /// Максимальное значение высоты крышки графина.
+        /// Максимальное значение высоты пробки графина.
         /// </summary>
-        public const double MaxStopperHeight = 50;
+        public const double MaxStopperHeight = 25;
 
         /// <summary>
         /// Минимальное значение длины ручки графина.
@@ -72,7 +72,7 @@ namespace CarafeModule
         /// Поля, хранящее состояние параметра 'Ручка графина' при построение.
         /// </summary>
         private ParameterState _handleState;
-        
+
         /// <summary>
         /// Метод, который обновляет максимально допустимое значение для длины ручки графина.
         /// </summary>
@@ -97,7 +97,6 @@ namespace CarafeModule
         /// <param name="parameterType">Параметр.</param>
         private void AdjustmentValueParameter(ParameterType parameterType)
         {
-         
             if (_parameters[parameterType].MaxValue <
                 _parameters[parameterType].Value)
             {
@@ -111,7 +110,7 @@ namespace CarafeModule
                     _parameters[parameterType].MinValue;
             }
         }
-       
+
         /// <summary>
         /// Конструктор.
         /// </summary>
